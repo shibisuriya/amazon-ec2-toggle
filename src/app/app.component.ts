@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AnimalsService } from './core/services/http/animals.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'amazon-ec2-toggle';
+  constructor(private animalService: AnimalsService) {
+
+  }
+  animals = []
+  ngOnInit() {
+    this.animalService.get()
+      .subscribe((resp: any) => {
+        this.animals = resp
+
+      })
+  }
 }

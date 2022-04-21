@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api_url: 'http://localhost:9000',
+  lambda_url: 'http://www.amazon.test.lambda.url'
 };
 
 /*
