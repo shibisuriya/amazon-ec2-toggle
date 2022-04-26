@@ -1,4 +1,6 @@
-# AmazonEc2Toggle
+# Amazon EC2 Toggler
+## Architecture
+![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/architecture.jpg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
 
