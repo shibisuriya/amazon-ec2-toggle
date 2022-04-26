@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:9000',
+  api_url: 'http://localhost:3002/api',
   lambda_url: 'http://www.amazon.test.lambda.url'
 };
 
