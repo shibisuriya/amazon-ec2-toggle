@@ -14,10 +14,11 @@ export class AppComponent {
   }
   animals = []
   ngOnInit() {
+  }
+  getAnimals() {
     this.animalService.get()
       .subscribe((resp: any) => {
         this.animals = resp
-
       })
   }
 }

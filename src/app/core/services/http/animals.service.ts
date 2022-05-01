@@ -11,6 +11,5 @@ export class AnimalsService {
 
   get(): Observable<Animal[]> {
     return this.apiService.get('/animals/')
-      .pipe(map(data => data.article));
   }
 }

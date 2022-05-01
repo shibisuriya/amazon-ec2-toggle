@@ -24,12 +24,12 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
   getLambda(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.api_url}${path}`, { params })
+    return this.http.get(`${environment.lambda_url}${path}`, { params })
       .pipe(catchError(this.formatErrors));
   }
   postLambda(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
-      `${environment.api_url}${path}`,
+      `${environment.lambda_url}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
   }
