@@ -17,7 +17,6 @@ export class XhrInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         tap((event: any) => {
-
           // Http calls succeed...
           if (event instanceof HttpResponse) {
             console.log(event.status);
