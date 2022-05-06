@@ -1,0 +1,36 @@
+
+.section {
+  margin: 2em auto;
+  width: 70%;
+  font-size: 0.8em;
+  border: 1px solid black;
+}
+
+.section h1 {
+  background-color: rgb(222, 103, 103);
+  color: white;
+  padding: 0.4em;
+  margin: 0;
+  margin-bottom: 0.8em;
+}
+
+.section div {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0 1em;
+  padding-bottom: 1em;
+}
+.container {
+  margin: 0 auto;
+  font-size: 16px;
+}
+.btn {
+  display: block;
+  width: 10em;
+  margin: 2em auto;
+  padding: 1em;
+  background-color:rgb(222, 103, 103);
+  color:white;
+  font-size: 1em;
+  font-weight: bold;
+}

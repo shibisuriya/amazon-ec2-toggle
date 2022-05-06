@@ -1,2 +1,39 @@
-<h1>{{data | json}}</h1>
-<button (click)="getAnimals()">Get Animals</button>
+<button class="btn" (click)="getAnimals()">Hit API</button>
+
+<div *ngIf="data; else no_data" class="container">
+  <div class="section">
+    <h1>Message</h1>
+    <div>
+      {{ EC2_timer }}
+    </div>
+  </div>
+  <div class="section">
+    <h1>Time</h1>
+    <div>
+      {{ time }}
+    </div>
+  </div>
+  <div class="section">
+    <h1>Components of time</h1>
+    <div>
+      {{ time_components | json }}
+    </div>
+  </div>
+  <div class="section">
+    <h1>Cron Expression</h1>
+    <div>
+      {{ cron_expression }}
+    </div>
+  </div>
+</div>
+
+<ng-template #no_data>
+  <div class="container">
+    <div class="section">
+      <h1>Message</h1>
+      <div>
+        {{ EC2_timer }}
+      </div>
+    </div>
+  </div>
+</ng-template>
