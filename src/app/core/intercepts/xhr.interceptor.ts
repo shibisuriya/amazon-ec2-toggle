@@ -8,19 +8,20 @@ import {
 } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { SnackBarService } from '../services/snack-bar.service';
 import { LambdaService } from '../services/http/lambda.service';
 import { environment } from '../../../environments/environment';
 @Injectable()//{providedIn: 'root'}
 export class XhrInterceptor implements HttpInterceptor {
-  constructor(private _snackBar: SnackBarService, private lambda: LambdaService) { }
+  constructor(private lambda: LambdaService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
         tap((event: any) => {
+
           // Http calls succeed...
           if (event instanceof HttpResponse) {
             console.log(event.status);
+
           }
         }, (error: any) => {
           // Lambda URL...
@@ -39,7 +40,6 @@ export class XhrInterceptor implements HttpInterceptor {
           else {
             // Http call failed because of some reason...
             if (error.status == 0) { // EC2 is down...
-              // this._snackBar.open('Unable to reach EC2', 'Hello')
               return this.lambda.up().subscribe((resp: any) => {
                 console.log(resp)
 

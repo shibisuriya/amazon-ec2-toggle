@@ -22,6 +22,7 @@ export class AppComponent {
   getAnimals() {
     this.animalService.get()
       .subscribe((resp: any) => {
+
         this.data = resp.middle_ware_data
         this.EC2_timer = this.data.EC2_timer
         this.cron_expression = this.data.cron_expression
