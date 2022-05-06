@@ -13,7 +13,7 @@ export class ToastService {
   }
   showError(title: any, message: any) {
     this.toastr.error(message, title, {
-      timeOut: 8000
+      timeOut: 12000
     });
   }
 
