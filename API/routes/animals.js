@@ -5,6 +5,7 @@ router.get("/animals", async (req, res) => {
     // "EC2 timer": res.ec2_timer,
     // animals: animals,
     middle_ware_data: res.middle_ware_data,
+    data: animals,
   };
   console.log(resp);
   res.status(200).json(resp);

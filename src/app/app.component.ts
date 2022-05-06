@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private animalService: AnimalsService) {
 
   }
-  data: any = null
+  data: any;
   cron_expression = null;
   time_components: any = null;
   EC2_timer: any = null;
@@ -21,11 +21,12 @@ export class AppComponent {
   getAnimals() {
     this.animalService.get()
       .subscribe((resp: any) => {
-        this.data = resp.middle_ware_data
-        this.EC2_timer = this.data.EC2_timer
-        this.cron_expression = this.data.cron_expression
-        this.time_components = this.data.time_components
-        this.time = this.data.time
+        this.data = resp.data
+        const middle_ware_data = resp.middle_ware_data
+        this.EC2_timer = middle_ware_data.EC2_timer
+        this.cron_expression = middle_ware_data.cron_expression
+        this.time_components = middle_ware_data.time_components
+        this.time = middle_ware_data.time
 
       }, err => {
         this.data = null;

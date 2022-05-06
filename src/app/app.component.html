@@ -1,6 +1,12 @@
-<button class="btn" (click)="getAnimals()">Hit API</button>
+<button class="btn" (click)="getAnimals()">Hit Animals API</button>
 
 <div *ngIf="data; else no_data" class="container">
+  <div class="section">
+    <h1>Dummy API Data</h1>
+    <div>
+      {{ data | json }}
+    </div>
+  </div>
   <div class="section">
     <h1>Message</h1>
     <div>
@@ -32,7 +38,8 @@
     <div class="section">
       <h1>Hit API</h1>
       <div>
-        Press the `Hit API` button to know the status of the expressjs server.
+        Press the `Hit Animals API` button to retreive a list of animals (To
+        know the status of the expressjs server).
       </div>
     </div>
   </div>
