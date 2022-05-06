@@ -27,6 +27,8 @@ export class AppComponent {
         this.time_components = this.data.time_components
         this.time = this.data.time
 
+      }, err => {
+        this.data = null;
       })
   }
 }
