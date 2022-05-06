@@ -11,5 +11,10 @@ export class ToastService {
       timeOut: 8000
     });
   }
+  showError(title: any, message: any) {
+    this.toastr.error(message, title, {
+      timeOut: 8000
+    });
+  }
 
 }

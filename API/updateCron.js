@@ -42,5 +42,6 @@ module.exports = function updateCron(req, res, next) {
     cron_expression: cron_express,
   };
 
+  // Write the statements to update the eventBridge rule here, before processing the request.
   next();
 };
