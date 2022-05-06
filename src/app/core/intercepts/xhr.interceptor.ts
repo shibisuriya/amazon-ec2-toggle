@@ -10,16 +10,20 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LambdaService } from '../services/http/lambda.service';
 import { environment } from '../../../environments/environment';
+import { ToastService } from '../services/toast.service';
+
 @Injectable()//{providedIn: 'root'}
 export class XhrInterceptor implements HttpInterceptor {
-  constructor(private lambda: LambdaService) { }
+  constructor(private lambda: LambdaService, private toast: ToastService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
         tap((event: any) => {
           // Http calls succeed...
           if (event instanceof HttpResponse) {
-            console.log(event.status);
+            console.log(event)
+            const message = event?.body?.middle_ware_data?.EC2_timer
+            this.toast.showSuccess('EC2 Timer', message)
 
           }
         }, (error: any) => {

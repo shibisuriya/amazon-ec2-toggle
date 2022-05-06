@@ -1,7 +1,7 @@
 var moment = require("moment");
 module.exports = function updateCron(req, res, next) {
   const date = moment().utc();
-  const DELAY_IN_MINUTES = 1440;
+  const DELAY_IN_MINUTES = 15;
   console.log("current date = ", date.format("hh:mm:ss a"));
   // Date is getting mutated by .add() method.
   date.add(DELAY_IN_MINUTES, "minutes");
@@ -23,15 +23,15 @@ module.exports = function updateCron(req, res, next) {
     " ? " +
     +year +
     " )";
-
+  const message =
+    "EC2 will shutdown at " +
+    date.local().format("hh:mm:ss a") +
+    " (Local) after " +
+    DELAY_IN_MINUTES +
+    " minutes delay...";
   res.middle_ware_data = {
-    EC2_timer:
-      "EC2 will shutdown at " +
-      date.format("hh:mm:ss a") +
-      " after " +
-      DELAY_IN_MINUTES +
-      " minutes delay...",
-    time: date.format("DD-MM-yyyy hh:mm:ss a"),
+    EC2_timer: message,
+    time: date.utc().format("DD-MM-yyyy hh:mm:ss a") + " (UTC)",
     time_components: {
       minutes: +minutes,
       hours: +hours,

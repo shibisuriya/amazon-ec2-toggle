@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AnimalsService } from './core/services/http/animals.service';
-import { ToastService } from './core/services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { ToastService } from './core/services/toast.service';
 })
 export class AppComponent {
   title = 'amazon-ec2-toggle';
-  constructor(private animalService: AnimalsService, private toast: ToastService) {
+  constructor(private animalService: AnimalsService) {
 
   }
   data: any = null
@@ -22,7 +21,6 @@ export class AppComponent {
   getAnimals() {
     this.animalService.get()
       .subscribe((resp: any) => {
-        this.toast.showSuccess()
         this.data = resp.middle_ware_data
         this.EC2_timer = this.data.EC2_timer
         this.cron_expression = this.data.cron_expression

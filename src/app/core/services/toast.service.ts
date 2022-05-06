@@ -6,8 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 export class ToastService {
 
   constructor(private toastr: ToastrService) { }
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+  showSuccess(title: any, message: any) {
+    this.toastr.success(message, title, {
+      timeOut: 8000
+    });
   }
 
 }
