@@ -2,7 +2,7 @@
 
 <div *ngIf="data; else no_data" class="container">
   <div class="section">
-    <h1>Message</h1>
+    <h1>Hit API</h1>
     <div>
       {{ EC2_timer }}
     </div>
@@ -30,9 +30,9 @@
 <ng-template #no_data>
   <div class="container">
     <div class="section">
-      <h1>Message</h1>
+      <h1>Hit API</h1>
       <div>
-        {{ EC2_timer }}
+        Press the `Hit API` button to know the status of the expressjs server.
       </div>
     </div>
   </div>
