@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-app.get("/", async (req, res) => {
+app.get("/hello", async (req, res) => {
   // Code to up the EC2 instance....
 
   // Code to shutdown the EC3 instance...

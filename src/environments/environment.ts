@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api_url: 'http://localhost:3002/api',
-  lambda_url: 'http://localhost:3003/'
+  lambda_url: 'http://localhost:3003/hello'
 };
 
 /*
