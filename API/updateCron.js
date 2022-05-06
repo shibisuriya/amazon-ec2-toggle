@@ -5,14 +5,9 @@ module.exports = function updateCron(req, res, next) {
   console.log("current date = ", date.format("hh:mm:ss a"));
   // Date is getting mutated by .add() method.
   date.add(DELAY_IN_MINUTES, "minutes");
-  res.ec2_timer =
-    "EC2 will shutdown at " +
-    date.format("hh:mm:ss a") +
-    " after " +
-    DELAY_IN_MINUTES +
-    " minutes delay...";
+
   const minutes = date.format("mm");
-  const hour = String(date.hours());
+  const hours = String(date.hours());
   const day_of_month = date.format("DD");
   const month = date.format("MM");
   const year = date.year();
@@ -20,7 +15,7 @@ module.exports = function updateCron(req, res, next) {
     "cron( " +
     +minutes +
     " " +
-    +hour +
+    +hours +
     " " +
     +day_of_month +
     " " +
@@ -28,14 +23,24 @@ module.exports = function updateCron(req, res, next) {
     " ? " +
     +year +
     " )";
-  res.date_components = {
-    // minutes: minutes,
-    // hour: hour,
-    // day_of_month: day_of_month,
-    // month: month,
-    // year: year,
-    date: date.format("DD-MM-yyyy hh:mm:ss a"),
-    cron_express: cron_express,
+
+  res.middle_ware_data = {
+    EC2_timer:
+      "EC2 will shutdown at " +
+      date.format("hh:mm:ss a") +
+      " after " +
+      DELAY_IN_MINUTES +
+      " minutes delay...",
+    time: date.format("DD-MM-yyyy hh:mm:ss a"),
+    time_components: {
+      minutes: +minutes,
+      hours: +hours,
+      day_of_month: +day_of_month,
+      month: +month,
+      year: +year,
+    },
+    cron_expression: cron_express,
   };
+
   next();
 };

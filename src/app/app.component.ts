@@ -12,13 +12,14 @@ export class AppComponent {
   constructor(private animalService: AnimalsService) {
 
   }
-  animals = []
+  data = null
   ngOnInit() {
   }
   getAnimals() {
     this.animalService.get()
       .subscribe((resp: any) => {
-        this.animals = resp
+        this.data = resp.middle_ware_data
+
       })
   }
 }
