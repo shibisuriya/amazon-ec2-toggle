@@ -57,22 +57,22 @@ Run `npm run serve` to start the expressjs server.
 ## Demo
 ### EC2 up and running
 
-![EC2 up and running](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20up%20and%20running.png)
+![EC2 up and running](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20up%20and%20running.png) \\
 
 ### EC2 down, Lambda function triggered
 
-![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20down%2C%20Lamba%20function%20triggered.png)
+![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20down%2C%20Lamba%20function%20triggered.png) \\ 
 
 ### Internal server error in API Server (EC2)
 
-![Internal server errorin EC2](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/Internal%20Server%20Error%20in%20EC2.png)
+![Internal server errorin EC2](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/Internal%20Server%20Error%20in%20EC2.png) \\ 
 
 ### EC2 down, internal server error in Lambda function
 
-![EC2 down, internal server error in Lambda function](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20down%2C%20internal%20server%20error%20in%20Lambda%20function.png)
+![EC2 down, internal server error in Lambda function](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/EC2%20down%2C%20internal%20server%20error%20in%20Lambda%20function.png) \\
 
 ### Unable to reach EC2, unable to reach Lambda function
 
-![Unable to reach EC2, unable to reach Lambda function](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/Unable%20to%20reach%20EC2%20unable%20to%20reach%20Lambda%20function.png)
+![Unable to reach EC2, unable to reach Lambda function](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/github/Unable%20to%20reach%20EC2%20unable%20to%20reach%20Lambda%20function.png) \\
 
 
