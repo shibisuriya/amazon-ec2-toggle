@@ -4,7 +4,7 @@
 
  The purpose of this project is to demostrate a silly way of reducing cost by switching off an EC2 instance (The EC2 instance is host to an API server) when not in use (Not recieving any inbound HTTP requests). I am an amateur computer programmer, assume that I don't know what I am talking about or doing... This project is experimental... I shall have neither liability nor responsibility to any person or entity with respect to any loss or damage caused, or alleged to be caused, directly or indirectly by the use of information contained here.
 
-## Problem
+## Problem statement
 
 We are charged for the duration for which we keep our EC2 instances active. In small startups cost cutting is essential
 When building a full stack Web Application we typically need three components, a place to holde
@@ -22,6 +22,9 @@ In startups most of the times we have multiple environments. For example, most o
 6) EventBridge (The expressjs server's middleware updates the cron job to excute the Lambda function (To switch of the EC2 instance) after 15 minutes (The time peroid is arbitary) before processing each HTTP request).
 7) Amazon API gateway (Http requests to the Lambda function is routed through this API gateway).
 
+## Architecture
+
+![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/architecture.jpg)
 ## Flow
 
 1) XML HTTP requests are sent to the Expressjs server which is running inside an E2C instance as soon as the user starts using the Web Application.
@@ -29,30 +32,33 @@ In startups most of the times we have multiple environments. For example, most o
 3) If the EC2 instance is up and serving HTTP requests we update a cron job (Amazon EventBridge) before processing each request. We instruct the Amazon EventBridge to trigger the AWS Lambda function which switches off the E2C instance after 15 minutes (The time peroid is arbitary) after the last request has been received from the front end.
 c) This way the EC2 will be switched off as soon as it stops recieving HTTP requests (15 minutes in our case).
 
-# Architecture
 
-![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/architecture.jpg)
+## Setup
 
-# Setup
-
-## Angular Project (Frontend Web Application)
+### Angular Project (Frontend Web Application)
 
 This front end Web Application was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
 
-#### Development server
+##### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-#### Build
+##### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## API Server
+### API Server
 
-Run `npm i` to install node modules.
-Run `npm run serve` to start the expressjs server.
+- SSH into the EC2 server.
+- Clone this repository into the EC2 server by running ```git clone https://github.com/shibisuriya/Amazon-EC2-Toggle.git```
+- Change directory to API/ by running ```cd Amazon-EC2-Toggle/API```
+- Run ```npm i``` to install node modules.
+- Run ```npm run serve``` to start the expressjs server.
+- Expose the EC2 server (Expressjs server) to the internet from the AWS EC2 console.
 
-# Lambda function
+### Lambda function
+- Zip the files given in the Lambda/ folder and upload it to AWS Lambda.
+- Expose the Lambda function with the Lambda integration using the API Gateway console.
 
 ## Demo
 ### EC2 up and running
