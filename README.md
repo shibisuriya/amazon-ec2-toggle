@@ -6,9 +6,15 @@
 
 ## Problem statement
 
-We are charged for the duration for which we keep our EC2 instances active. In small startups cost cutting is essential
-When building a full stack Web Application we typically need three components, a place to holde
-In startups most of the times we have multiple environments. For example, most of the time no one is using these servers are not getting used but we have to pay for keeping the EC2 instantances on. What if we can switch of the EC2 in which the API server is running as soon as we are not recieving any inbound Http traffic. This would help us save some money.
+Bootstraped tech startups have access to limited amounts of funds; so it is very essential to cut cost. Keeping the EC2 instance (which is host to the Web Application's API server) off when not in use while building and testing a full stack Web Application using Client Side Rendering is essential to cost cutting.
+</br>
+A conscious developer might write a shell script to stop the EC2 instance and run it before logging off for the day or taking a snack break. But this method is not fool-proof or fully automatic.
+- What if the Developer forgets to switch off the EC2 instance before logging off for the day?
+- When you stop / start your EC2 instance, the IP address of that instance will change.
+- What if your team consists of developers (Like Frontend Developers or UI / UX Developers) who are not savvy with Amazon Web Services? These developers might be working late into the night when the Devops engineers are away...
+- What if your team consists of non-developers like testers, product managers, scrum masters, sales staff, etc. who are not savvy with AWS. They might be testing or demoing the Web Application (which is in testing / development stage) to a potential client when the Devops engineers are away from keyboard.
+</br>
+What if we are able to switch on the EC2 instance (host to the application's API server) as soon as a user starts using our Web Application and switch off the EC2 instance when there is no inbound HTTP traffic (that is, nobody is using the Web Application) automatically?
 
 ## Components
 
