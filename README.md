@@ -13,20 +13,20 @@ A conscious developer might write a shell script to stop the EC2 instance and ru
 - When you stop / start your EC2 instance, the IP address of that instance will change.
 - What if your team consists of developers (Like Frontend Developers or UI / UX Developers) who are not savvy with Amazon Web Services? These developers might be working late into the night when the Devops engineers are away...
 - What if your team consists of non-developers like testers, product managers, scrum masters, sales staff, etc. who are not savvy with AWS. They might be testing or demoing the Web Application (which is in testing / development stage) to a potential client when the Devops engineers are away from keyboard.
-</br>
+
 What if we are able to switch on the EC2 instance (host to the application's API server) as soon as a user starts using our Web Application and switch off the EC2 instance when there is no inbound HTTP traffic (that is, nobody is using the Web Application) automatically?
 
 ## Components
 
-1) Angular2+ Web Application (You can use any Frontend technology, I have used Angular2+ because I am comfortable with it).
-2) S3 bucket (We copy the compiled Angular2+ Application inside an S3 bucket so that it can be served as a website through cloudfront).
-3) Angular HTTP interceptor (Every XHR request made from within the Angular2+ Web Application goes through this HTTP interceptor)
-4) EC2 instance (This EC2 instance is host to an expressjs server).
-5) Expressjs server (Serves API requests made from the frontend Angular2+ Application)
-5) Lambda function (Can switch on and switch of the EC2 instance).
-6) expressjs middleware (Every XHR request made to the express server passes through this middleware).
-6) EventBridge (The expressjs server's middleware updates the cron job to excute the Lambda function (To switch of the EC2 instance) after 15 minutes (The time peroid is arbitary) before processing each HTTP request).
-7) Amazon API gateway (Http requests to the Lambda function is routed through this API gateway).
+1) Angular2+ Application (You can use any Frontend technology, I have used Angular2+ because I am comfortable with it).
+2) S3 bucket (We copy the compiled Angular2+ Application inside an S3 bucket and serve it to the user's browswer through AWS Cloudfront).
+3) Angular HTTP interceptor (Every XMLHttpRequest made from within the Angular2+ Web Application propogates through this HTTP interceptor).
+4) EC2 instance (This EC2 instance is host to an API server built using Expressjs).
+5) Expressjs server (Serves API requests made from the frontend Angular2+ Application).
+5) Lambda function (Can switch on and switch off the EC2 instance).
+6) Expressjs middleware (Every XMLHttpRequest made to the express server passes through this middleware).
+6) EventBridge (The expressjs server's middleware updates the cron job before processing each HTTP request, the cron job triggers the Lambda function (To switch off the EC2 instance) after 15 minutes (The time peroid is arbitary).
+7) Amazon API gateway (HTTP requests made by the users from the browser to the Lambda function is routed through this API gateway).
 
 ## Architecture
 
@@ -39,6 +39,12 @@ What if we are able to switch on the EC2 instance (host to the application's API
 c) This way the EC2 will be switched off as soon as it stops recieving HTTP requests (15 minutes in our case).
 
 
+## Warning
+- Careful while editing the Angular2+ HTTP interceptor, it might put the program in a loop.
+- Careful while writing events to the eventBridge, events might fire in a loop, use AWS budget.
+
+## Drawback
+The API(s) might be a little bit slow since they are editing the eventBridge on each API call...
 ## Setup
 
 ### Angular Project (Frontend Web Application)
@@ -61,6 +67,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Run ```npm i``` to install node modules.
 - Run ```npm run serve``` to start the expressjs server.
 - Expose the EC2 server (Expressjs server) to the internet from the AWS EC2 console.
+- Add it in startup.
 
 ### Lambda function
 - Zip the files given in the Lambda/ folder and upload it to AWS Lambda.
