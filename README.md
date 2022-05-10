@@ -33,15 +33,12 @@ What if we are able to switch on the EC2 instance (host to the application's API
 ![Architecture](https://github.com/shibisuriya/Amazon-EC2-Toggle/blob/master/images/architecture.jpg)
 ## Flow
 
-1) XML HTTP requests are sent to the Expressjs server which is running inside an E2C instance as soon as the user starts using the Web Application.
-2) If the EC2 server is down, the HTTP calls to the API server will fail, if the HTTP calls to the API server fails, then we make a http request to the Lambda function asking it to switch on the EC2 instance.
-3) If the EC2 instance is up and serving HTTP requests we update a cron job (Amazon EventBridge) before processing each request. We instruct the Amazon EventBridge to trigger the AWS Lambda function which switches off the E2C instance after 15 minutes (The time peroid is arbitary) after the last request has been received from the front end.
-c) This way the EC2 will be switched off as soon as it stops recieving HTTP requests (15 minutes in our case).
+XMLHttpRequest(s) are sent to the Expressjs API server (which is running inside an EC2 instance) as soon as a user starts using the Angular2+ Web Application.
 
+- If the EC2 server is down, the XMLHttpRequest(s) to the API server fail. If XMLHttpRequest(s) to the API server fail, then we make an XMLHttpRequest to the Lambda function (through the API Gateway) which switches on the EC2 server.
+- If the EC2 instance is up and running, and the API server is serving XMLHttpRequest(s), we update a cron job (The cron job triggers a Lamba function which switches off the EC2 server after an arbitrary time period) before processing each XMLHttpRequest.
+This way the EC2 server will be switched off as soon as (15 minutes in our case) the API server stops receiving XMLHttpRequest(s).
 
-## Warning
-- Careful while editing the Angular2+ HTTP interceptor, it might put the program in a loop.
-- Careful while writing events to the eventBridge, events might fire in a loop, use AWS budget.
 
 ## Drawback
 The API(s) might be a little bit slow since they are editing the eventBridge on each API call...
@@ -66,12 +63,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Change directory to API/ by running ```cd Amazon-EC2-Toggle/API```
 - Run ```npm i``` to install node modules.
 - Run ```npm run serve``` to start the expressjs server.
-- Expose the EC2 server (Expressjs server) to the internet from the AWS EC2 console.
-- Add it in startup.
+- Expose the API server to the internet from the AWS EC2 console.
 
 ### Lambda function
-- Zip the files given in the Lambda/ folder and upload it to AWS Lambda.
-- Expose the Lambda function with the Lambda integration using the API Gateway console.
+- Zip the files given in Lambda/ folder and upload it to AWS Lambda.
+- Expose the Lambda function to the internet using the API Gateway console.
 
 ## Demo
 ### EC2 up and running
